@@ -1,3 +1,4 @@
+
 \documentclass[10pt,numbering,toc]{bpslides}
 \usepackage{blindtext}
 
@@ -9,15 +10,17 @@
 \definecolor{magenta0}{cmyk}{0,1,0,0}
 \definecolor{purple0}{rgb}{0.5,0,1}
 
-\title[Short title]{An example presentation}
+\title[Short title]{Title of your presentation}
 
-\subtitle{A nice subtitle}
+\subtitle{Subtitle of the presentation}
 
 \author[Short Authors Name]{First Author's name\inst{1} \and Second author's name\inst{2}}
 
 \institute{\inst{1} First institute\vs\\\inst{2} Second institute}
 
-\date[Short date]{The date}
+\date[Short date]{January 1, 2021}
+
+\conference{Conference/university hosting the talk}
 
 \begin{document}
 
@@ -60,10 +63,7 @@
 \begin{itemize}
 \item If this option is not selected but the user defines sections in the document, headings will show up in a separate slide at the beginning of each section
 \end{itemize}
-\item \texttt{wide}: change the aspect ratio of the slides from 4:4 (default) to 16:9
-\begin{itemize}
-\item Changing the aspect ratio may require changing the font size
-\end{itemize}
+\item \texttt{wide}: change the aspect ratio of the slides from 4:3 (default) to 16:9
 \end{itemize}
 \end{frame}
 
@@ -140,7 +140,7 @@
     \begin{figure}
     \centering
     \caption{Heading of the figure}
-    \includegraphics[width=1\paperheight]{figures/fredgraph}
+    \includegraphics[width=1\paperheight]{fredgraph}
     \end{figure}
 \end{frame}
 
@@ -148,6 +148,7 @@
 
 \begin{frame}{New commands}
 	\begin{itemize}
+	\item \texttt{$\backslash$conference$\{$the place$\}$} displays the place hosting the talk in the title page\vs
 	\item \texttt{$\backslash$paper$\{$Author$\}\{$Year$\}$} displays \paper{Author}{Year}\vs
 	\item \texttt{$\backslash$paperalt$\{$Author$\}\{$Year$\}$} displays \paperalt{Author}{Year}\vs
 	\item \texttt{$\backslash$note$\{$some text$\}$} displays \note{some text}\vs
