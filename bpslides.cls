@@ -31,9 +31,9 @@
 \ProcessOptions\relax
 
 \ifdefined\aspect
-    \LoadClass[aspectratio=169]{beamer}
+    \LoadClass[11pt,aspectratio=169]{beamer}
 \else
-    \LoadClass{beamer}
+    \LoadClass[10pt]{beamer}
 \relax\fi
 
 \RequirePackage[english]{babel}
@@ -96,7 +96,6 @@
 	\RequirePackage{sfmath}
 \else\relax\fi
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLORS
 
@@ -117,8 +116,8 @@
 \setbeamercolor{structure}{fg=main}
 
 % slide margins
-\setbeamersize{text margin left=0.4cm} 
-\setbeamersize{text margin right=0.4cm}
+\setbeamersize{text margin left=0.6cm} 
+\setbeamersize{text margin right=0.6cm}
 
 % no navigation symbols
 \setbeamertemplate{navigation symbols}{}
@@ -159,10 +158,10 @@
 
 \setbeamertemplate{frametitle}{
     \vs\vs
-    \usebeamerfont{frametitle}\insertframetitle
+    \hspace{-0.3cm}\usebeamerfont{frametitle}\insertframetitle
     \ifx\insertframesubtitle\empty\else%
         \vs\\%
-        {\color{black!50}\usebeamerfont{framesubtitle}\insertframesubtitle}
+        \hspace{-0.3cm}{\color{black!50}\usebeamerfont{framesubtitle}\insertframesubtitle}
     \relax\fi
     \ifdefined\hdrule%
         \vspace{-0.2cm}\\%
@@ -179,38 +178,49 @@
 \setbeamerfont{institute}{size=\normalsize}
 \setbeamerfont{date}{size=\normalsize}
 
-\setbeamercolor{title}{fg=main,bg=white}
-\setbeamercolor{subtitle}{fg=main,bg=white}
+\setbeamercolor{title}{fg=main,bg=black!5}
+\setbeamercolor{author}{fg=black,bg=white!5}
+\setbeamercolor{date}{fg=black,bg=white!5}
 
-\setbeamertemplate{title page}{
-    \ \vfill%
+\newcommand{\conference}[1]{\def\talk{#1}}
+
+\setbeamertemplate{title page}{%
     \addtocounter{framenumber}{-1}%
-    \begin{beamercolorbox}[sep=0pt,center]{title}%
+    %
+    %
+    \begin{beamercolorbox}[sep=10pt,center]{title}%
         \usebeamerfont{title}%
         \inserttitle%
         \ifx\insertsubtitle\empty\else%
-            \vspace{0.2cm}\par%
-            \usebeamerfont{subtitle}%
-            \insertsubtitle%
-        \relax\fi
+        		\vspace{0.2cm}\par%
+		\usebeamerfont{subtitle}%
+		\insertsubtitle%
+        \relax\fi%
     \end{beamercolorbox}%
-    \vspace{0.5cm}%
-    \begin{beamercolorbox}[sep=0pt,center]{author}%
+    %
+    %
+    \begin{beamercolorbox}[sep=20pt,center]{author}%
         \usebeamerfont{author}%
         \insertauthor%
-	\end{beamercolorbox}%
-    \vspace{0.5cm}%
-    \begin{beamercolorbox}[sep=0pt,center]{institute}%
-        \usebeamerfont{institute}%
-        \insertinstitute%
+        \ifx\insertinstitute\empty\else\par%
+		\vspace{0.3cm}%
+		\usebeamerfont{institute}%
+		\insertinstitute\\%
+	\relax\fi%
     \end{beamercolorbox}%
-    \vspace{0.7cm}%
+    %
+    %
     \begin{beamercolorbox}[sep=0pt,center]{date}%
-        \usebeamerfont{date}%
-        \insertdate%
+	\usebeamerfont{date}%
+	\ifdefined\talk%
+		\talk\par\vspace{0.3cm}%
+	\else\relax\fi%
+	\insertdate%
     \end{beamercolorbox}%
-    \vfill \ }
-
+    %
+    %
+    }
+    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TABLE OF CONTENTS:
 
@@ -236,7 +246,7 @@
 % Format of sections in TOC:
 \setbeamertemplate{section in toc}{\usebeamercolor[fg]{enumerate item}{%
     {\color{main}\inserttocsectionnumber. \inserttocsection}%
-}}
+}}%
 
 % Format of subsections in TOC:
 \setbeamertemplate{subsection in toc}{\usebeamercolor[fg]{enumerate item}{%
@@ -257,16 +267,13 @@
 \newcommand{\paper}[2]{{{\color{main}#1} ({\color{main}#2})}}
 \newcommand{\paperalt}[2]{{\color{main}#1, #2}}
 
-\newcommand{\redpaper}[2]{{{\color{red}#1} ({\color{red}#2})}}
-\newcommand{\graypaper}[2]{{{\color{gray}#1} ({\color{gray}#2})}}
-
 \renewcommand{\note}[1]{\textit{\color{black!45}#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LIST ENVIROMENTS
 
-\setitemize{itemsep=1ex, topsep=1ex, leftmargin=15pt}
-\setenumerate{itemsep=1ex, topsep=1ex, leftmargin=20pt}
+\setitemize{itemsep=1.2ex, topsep=1.2ex, leftmargin=15pt}
+\setenumerate{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt}
 
 \setitemize[1]{label={\footnotesize\raise1.5pt\hbox{\donotcoloroutermaths{\color{main}$\bullet$}}}}
 \setitemize[2]{label={\footnotesize\raise1.5pt\hbox{\donotcoloroutermaths{\color{main}$\circ$}}}}
