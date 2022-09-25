@@ -41,9 +41,13 @@
 \RequirePackage{amssymb,amsmath,amsthm}		% To include math environments
 \RequirePackage{graphicx}					% To insert pictures
 \RequirePackage{enumitem}
-\RequirePackage{ragged2e} \justifying 		% To justify paragraphs
+\RequirePackage{ragged2e} \justifying 			% To justify paragraphs
 \RequirePackage{booktabs}					% Nice lines for tables
-\RequirePackage{caption}					% Redefine figure/table captions format
+\RequirePackage{caption}						% Redefine figure/table captions format
+\RequirePackage{subcaption}					% Subfigures
+\RequirePackage{stackengine}                			%
+\RequirePackage{ulem}                       			% Nice underline environment
+\RequirePackage{multirow}					% Merge multiple rows/columns in tables
 
 \mode<presentation>{\usetheme{Dresden}\usefonttheme{default}}
 
@@ -268,6 +272,9 @@
 \newcommand{\paperalt}[2]{{\color{main}#1, #2}}
 
 \renewcommand{\note}[1]{\textit{\color{black!45}#1}}
+
+\newcommand{\llave}[2]{%
+\underbrace{ \addstackgap[4pt] {$#1$} }_{ {\footnotesize\text{\color{main}#2}} } }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LIST ENVIROMENTS
