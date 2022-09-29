@@ -15,8 +15,9 @@
 % Page layout
 \DeclareOption{hdrule}{\def\hdrule{1}}	    	% Add a line below frame title
 \DeclareOption{numbering}{\def\numbering{1}}	% Include numbering of pages
-\DeclareOption{toc}{\def\toc{1}}			    % Include ToC at the beginning of each section
-\DeclareOption{wide}{\def\aspect{1}}    	    % Include ToC at the beginning of each section
+\DeclareOption{numbertotal}{\def\numbering{1}\def\numbertotal{1}}	% Include numbering of pages
+\DeclareOption{toc}{\def\toc{1}}			    	% Include ToC at the beginning of each section
+\DeclareOption{wide}{\def\aspect{1}}    	    	% Include ToC at the beginning of each section
 
 % Colors:
 \DeclareOption{red}{\def\colorred{1}}
@@ -105,13 +106,13 @@
 
 \definecolor{main}{rgb}{0,0.5,0}
 
-\ifdefined\colorgreen   \definecolor{main}{rgb}{0,0.5,0} \else\relax\fi
-\ifdefined\colorred     \definecolor{main}{rgb}{0.8,0,0} \else\relax\fi
-\ifdefined\colorblue    \definecolor{main}{rgb}{0,0.2,0.8} \else\relax\fi
-\ifdefined\colorblack   \definecolor{main}{rgb}{0,0,0} \else\relax\fi
-\ifdefined\colororange  \definecolor{main}{rgb}{1,0.25,0} \else\relax\fi
-\ifdefined\colormagenta \definecolor{main}{cmyk}{0,1,0,0} \else\relax\fi
-\ifdefined\colorpurple	\definecolor{main}{rgb}{0.5,0,1} \else\relax\fi
+\ifdefined\colorgreen\definecolor{main}{rgb}{0,0.5,0}\else\relax\fi
+\ifdefined\colorred\definecolor{main}{rgb}{0.8,0,0}\else\relax\fi
+\ifdefined\colorblue\definecolor{main}{rgb}{0,0.2,0.8}\else\relax\fi
+\ifdefined\colorblack\definecolor{main}{rgb}{0,0,0}\else\relax\fi
+\ifdefined\colororange\definecolor{main}{rgb}{1,0.25,0}\else\relax\fi
+\ifdefined\colormagenta\definecolor{main}{cmyk}{0,1,0,0}\else\relax\fi
+\ifdefined\colorpurple\definecolor{main}{rgb}{0.5,0,1}\else\relax\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SLIDE LAYOUT
@@ -130,25 +131,39 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADER AND FOOTER
 
-% Set frames' footers
+%\def\dotsep{\hspace{0.3cm}}
+%\setbeamertemplate{footline}{
+%   \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}	\end{beamercolorbox}
+%   \begin{beamercolorbox}[colsep=1.5pt]{middle separation line foot} \end{beamercolorbox}
+%   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot} \end{beamercolorbox} 
+%   \begin{beamercolorbox}{section in head/foot}
+%   	\vskip2pt%
+%   	\ifx\insertshortauthor\empty\else\dotsep\insertshortauthor\relax\fi%
+%   	\ifx\insertshorttitle\empty\else\dotsep\insertshorttitle\relax\fi%
+%	\ifx\insertshortdate\empty\else\dotsep\insertshortdate\relax\fi%
+%	\hfill%
+%	\ifdefined\numbering\dotsep%
+%		\ifdefined\numbertotal\insertframenumber/\inserttotalframenumber%
+%		\else\insertframenumber\fi
+%	\fi%
+%	\hspace{0.2cm} \ %
+%	\vskip4pt%
+%   \end{beamercolorbox}  }
+   
+\newcommand{\leftfoot}[1]{\def\lfoot{#1}}
 \setbeamertemplate{footline}{
    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}	\end{beamercolorbox}
    \begin{beamercolorbox}[colsep=1.5pt]{middle separation line foot} \end{beamercolorbox}
    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot} \end{beamercolorbox} 
    \begin{beamercolorbox}{section in head/foot}
-   	\vskip2pt%
-   	\hspace{0.2cm}%
-   	\ifx\insertshortauthor\empty\else\insertshortauthor\hspace{0.3cm}\relax\fi
-   	\ifx\insertshorttitle\empty\else\insertshorttitle\hspace{0.3cm}\relax\fi
-   	\ifdefined\numbering\else\hfill\fi
-   	\ifx\insertshortdate\empty\else\insertshortdate\relax\fi
-   	\ifdefined\numbering\hfill\insertframenumber\else\fi %
-	\hspace{0.2cm} \ %
-	\vskip4pt%
+   	\vskip2pt\hspace{0.3cm}%
+   	\ifdefined\lfoot\lfoot\else\relax\fi\hfill%
+	\ifdefined\numbering\ifdefined\numbertotal\insertframenumber/\inserttotalframenumber\else\insertframenumber\fi\fi%
+	\hspace{0.2cm} \ \vskip4pt%
    \end{beamercolorbox}  }
-  
+	
 % slide header
-\setbeamertemplate{headline}{
+\setbeamertemplate{headline}{%
 }
 
 % Set colors for headers/footers
@@ -159,18 +174,21 @@
 
 \setbeamerfont{frametitle}{size=\large,series=\bf}
 \setbeamerfont{framesubtitle}{size=\normalsize,shape=\it}
+\setbeamercolor{frametitle}{fg=main,bg=white}
+\setbeamercolor{framesubtitle}{fg=black!70,bg=white}
 
-\setbeamertemplate{frametitle}{
-    \vs\vs
-    \hspace{-0.3cm}\usebeamerfont{frametitle}\insertframetitle
-    \ifx\insertframesubtitle\empty\else%
-        \vs\\%
-        \hspace{-0.3cm}{\color{black!50}\usebeamerfont{framesubtitle}\insertframesubtitle}
-    \relax\fi
-    \ifdefined\hdrule%
-        \vspace{-0.2cm}\\%
-        \rule{\textwidth}{0.8pt}%
-    \else\relax\fi%
+\setbeamertemplate{frametitle}{    
+    \begin{beamercolorbox}[sep=10pt,left,wd=\paperwidth]{frametitle}%
+        \usebeamerfont{frametitle}%
+        \insertframetitle%
+        \ifx\insertframesubtitle\empty\else%
+    		\vs\\{\color{black!70}\usebeamerfont{framesubtitle}\insertframesubtitle}
+    	\relax\fi
+	 \ifdefined\hdrule%
+    		\vspace{-0.2cm}\\%
+		\rule{1.02\textwidth}{0.8pt}%
+  	 \else\relax\fi
+    \end{beamercolorbox}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -179,7 +197,7 @@
 \setbeamerfont{title}{size=\large,series=\bf}
 \setbeamerfont{subtitle}{size=\large,series=\mdseries,shape=\it}
 \setbeamerfont{author}{size=\normalsize}
-\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{institute}{size=\small}
 \setbeamerfont{date}{size=\normalsize}
 
 \setbeamercolor{title}{fg=main,bg=black!5}
@@ -207,7 +225,7 @@
         \usebeamerfont{author}%
         \insertauthor%
         \ifx\insertinstitute\empty\else\par%
-		\vspace{0.3cm}%
+		\vspace{0.5cm}%
 		\usebeamerfont{institute}%
 		\insertinstitute\\%
 	\relax\fi%
@@ -235,7 +253,7 @@
         \addtocounter{framenumber}{-1} 
         \begin{center}\begin{minipage}[b]{0.95\textwidth}%
             \tableofcontents[currentsection,hideallsubsections,subsubsectionstyle=hide]%
-        \end{minipage}\end{center}
+        \end{minipage}\end{center}\vfill
         \end{frame}}%
 \else
 % if "toc" not selected, show new slides with sections headings:
@@ -261,6 +279,12 @@
 % LENGTHS AND NEW COMMANDS
 
 \setlength{\parskip}{0mm}
+
+% Setting space below and above equations
+\setlength\abovedisplayskip{13pt}
+\setlength\belowdisplayskip{13pt}
+\setlength\abovedisplayshortskip{13pt}
+\setlength\belowdisplayshortskip{13pt}
 
 \newcommand{\hs}{\hspace{0.1cm}}
 \newcommand{\vs}{\vspace{0.1cm}}
@@ -325,12 +349,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BUTTONS
 
-\newcommand{\button}[2]{\raise-2pt\hbox{\hyperlink{#1}{\beamerbutton{\raise0.5pt\hbox{#2}}}}}
-\setbeamercolor{button}{bg=main!10,fg=black}
+\newcommand{\button}[2]{\raise-1pt\hbox{\hyperlink{#1}{\beamerbutton{\raise0.0pt\hbox{#2}}}}}
+\setbeamercolor{button}{bg=main!8,fg=black}
 \setbeamercolor{button border}{fg=main}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
-
 
 
 

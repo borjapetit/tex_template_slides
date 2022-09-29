@@ -1,5 +1,6 @@
 
-\documentclass[10pt,numbering,toc,wide]{bpslides}
+\documentclass[numbertotal,blue,toc,wide]{bpslides}
+
 \usepackage{blindtext}
 
 \definecolor{green0}{rgb}{0,0.5,0}
@@ -10,15 +11,23 @@
 \definecolor{magenta0}{cmyk}{0,1,0,0}
 \definecolor{purple0}{rgb}{0.5,0,1}
 
-\title[Short title]{Title of your presentation}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Title of your presentation}
 
 \subtitle{Subtitle of the presentation}
 
-\author[Short Author]{Author 1\inst{1} \and Author 2\inst{2} \and Author 3\inst{3}}
+\author{Author 1\inst{1} \and Author 2\inst{2} \and Author 3\inst{3}}
 
 \institute{\inst{1} Institution 1, \  \inst{2} Institution 2, \  \inst{3} Institution 3}
 
 \conference{Conference/university hosting the talk}
+
+\date{\today}
+
+\leftfoot{Whatever you want to write}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -53,10 +62,8 @@
 \begin{frame}{Main options - Other options}\label{firstslide}
 \begin{itemize}
 \item \texttt{hdrule}: add a line below frame title
-\item \texttt{numbering}: include slide numbers in the footer
-\begin{itemize}
-\item If this option is not included, the date will appear in the bottom-right corner
-\end{itemize}
+\item \texttt{numbering}: include slide numbers in the (right) footer
+\item \texttt{numbertotal}: include slide number and total number of slides in the (right) footer
 \item \texttt{toc}: include a table of contents at the beginning of each section
 \begin{itemize}
 \item If this option is not selected but the user defines sections in the document, headings will show up in a separate slide at the beginning of each section
@@ -76,7 +83,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 \begin{itemize}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
 \end{itemize}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 \end{itemize}
@@ -89,7 +95,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 \begin{enumerate}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
 \end{enumerate}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 \end{enumerate}
@@ -108,7 +113,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 \end{frame}
 
 \begin{frame}{Buttons}
-    \vfill
+\vfill
 \begin{itemize}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -146,6 +151,7 @@ Variable 3 & $367$ & 210 & 113 \\ \bottomrule
 
 \begin{frame}{New commands}
 	\begin{itemize}
+	\item \texttt{$\backslash$leftfoot$\{$whatever$\}$} displays ``whatever'' in the bottom-left corner
 	\item \texttt{$\backslash$conference$\{$the place$\}$} displays the place hosting the talk in the title page
 	\item \texttt{$\backslash$paper$\{$Author$\}\{$Year$\}$} displays \paper{Author}{Year}
 	\item \texttt{$\backslash$paperalt$\{$Author$\}\{$Year$\}$} displays \paperalt{Author}{Year}
