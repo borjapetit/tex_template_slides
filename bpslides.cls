@@ -47,12 +47,12 @@
 \RequirePackage{amssymb,amsmath,amsthm}		% To include math environments
 \RequirePackage{graphicx}					% To insert pictures
 \RequirePackage{enumitem}
-\RequirePackage{ragged2e} \justifying 			% To justify paragraphs
+\RequirePackage{ragged2e} \justifying 		% To justify paragraphs
 \RequirePackage{booktabs}					% Nice lines for tables
-\RequirePackage{caption}						% Redefine figure/table captions format
+\RequirePackage{caption}					% Redefine figure/table captions format
 \RequirePackage{subcaption}					% Subfigures
-\RequirePackage{stackengine}                			%
-\RequirePackage{ulem}                       			% Nice underline environment
+\RequirePackage{stackengine}                %
+\RequirePackage{ulem}                       % Nice underline environment
 \RequirePackage{multirow}					% Merge multiple rows/columns in tables
 \RequirePackage{tcolorbox}
 
