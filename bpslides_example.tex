@@ -1,5 +1,5 @@
 
-\documentclass[numbertotal,blue,toc,wide]{bpslides}
+\documentclass[numbertotal,toc,wide]{bpslides}
 
 \usepackage{blindtext}
 
@@ -25,7 +25,9 @@
 
 \date{\today}
 
-\leftfoot{Whatever you want to write}
+\disclaimer{The opinions and analyses in this paper are the responsibility of the authors and, therefore, do not necessarily coincide with those of their employers.}
+
+\foot{Whatever you want to write}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -35,42 +37,47 @@
 	\titlepage
 \end{frame}
 
-\begin{frame}{Main options - Colors}\label{firstslide}
-\begin{itemize}
-\item \texttt{green}: {\color{green0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.\hfill \note{(default)}
-\item \texttt{red}: {\color{red0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\item \texttt{blue}: {\color{blue0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\item \texttt{orange}: {\color{orange0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\item \texttt{black}: {\color{black}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\item \texttt{magenta}: {\color{magenta0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\item \texttt{purple}: {\color{purple0}Lorem ipsum dolor sit amet, consectetur adipiscing elit}.
-\end{itemize}
+\begin{frame}{Main options}\label{firstslide}
+	\begin{itemize}
+		\item \texttt{numbering}: include slide numbers in the (right) footer
+		\item \texttt{numbertotal}: include slide number and total number of slides in the (right) footer
+		\item \texttt{toc}: include a table of contents at the beginning of each section and include the section title in the (right) footer.
+		\begin{itemize}
+			\item If this option is not selected but the user defines sections in the document, headings will show up in a separate slide at the beginning of each section and no section title will appear in the footer.
+		\end{itemize}
+		\item \texttt{wide}: change the aspect ratio of the slides from 4:3 (default) to 16:9
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{Main options - Font typefaces}\label{firstslide}
-\begin{itemize}
-\item \texttt{helvetica}
-\item \texttt{sans}
-\item \texttt{iowa}
-\item \texttt{palatino}
-\item \texttt{bookman}
-\item \texttt{termes}
-\item \texttt{adventor}
-\end{itemize}
+\begin{frame}{Colors and fonts}
+	\hfill
+	\begin{minipage}{0.3\textwidth}
+		Colors:
+		\begin{itemize}
+			\item {\color{green0}\texttt{green}} \note{(default)}
+			\item {\color{red0}\texttt{red}}
+			\item {\color{blue0}\texttt{blue}}
+			\item {\color{orange0}\texttt{orange}}
+			\item {\color{black}\texttt{black}}
+			\item {\color{magenta0}\texttt{magenta}}
+			\item {\color{purple0}\texttt{purple}}
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}{0.3\textwidth}
+		Fonts:
+		\begin{itemize}
+			\item \texttt{sans} \note{(default)}
+			\item \texttt{helvetica}
+			\item \texttt{palatino}
+			\item \texttt{bookman}
+			\item \texttt{termes}
+			\item \texttt{adventor}
+			\item[]
+		\end{itemize}
+	\end{minipage}
+	\hfill \ 
 \end{frame}
 
-\begin{frame}{Main options - Other options}\label{firstslide}
-\begin{itemize}
-\item \texttt{hdrule}: add a line below frame title
-\item \texttt{numbering}: include slide numbers in the (right) footer
-\item \texttt{numbertotal}: include slide number and total number of slides in the (right) footer
-\item \texttt{toc}: include a table of contents at the beginning of each section
-\begin{itemize}
-\item If this option is not selected but the user defines sections in the document, headings will show up in a separate slide at the beginning of each section
-\end{itemize}
-\item \texttt{wide}: change the aspect ratio of the slides from 4:3 (default) to 16:9
-\end{itemize}
-\end{frame}
 
 \section{Itemize and enumerate environments}
 
@@ -78,88 +85,116 @@
 
 \begin{frame}{Itemize}\label{firstslide}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\end{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\end{itemize}
+	\begin{itemize}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\begin{itemize}
+			\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\end{itemize}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Enumerate}{This is how a frame's subtitle looks like}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\begin{enumerate}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\begin{enumerate}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\end{enumerate}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-\end{enumerate}
+	\begin{enumerate}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		\begin{enumerate}
+			\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		\end{enumerate}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+	\end{enumerate}
 \end{frame}
 
 \section{Blocks and buttons}
 
 \begin{frame}{Blocks}
-\begin{block}{Example of a block}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-\end{block}
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\end{itemize}
+	\begin{block}{Example of a block}
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+	\end{block}
+	\begin{itemize}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Buttons}
-\vfill
-\begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-\end{itemize}
-\vfill
-\hfill An example of button $\to$ \button{firstslide}{back to first slide}
+	\vfill
+	\begin{itemize}
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		\item Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+	\end{itemize}
+	\vfill
+	\hfill An example of button $\to$ \button{firstslide}{back to first slide}
 \end{frame}
 
 \section{Tables and figures}
 
 \begin{frame}{Tables}
-\begin{table}
-\centering
-\caption{Heading of the table}
-\begin{tabular}{cccc} \toprule
- & Mean & Median & Std Desvi.\\ \midrule
-Variable 1 & $1150$ & 900 & 235 \\ 
-Variable 2 & $430$ & 300 & 57 \\ 
-Variable 3 & $367$ & 210 & 113 \\ \bottomrule
-\end{tabular}
-\end{table}
+	\begin{table}
+		\centering
+		\caption{Heading of the table}
+		\begin{tabular}{cccc} \toprule
+		& Mean & Median & Std Desvi.\\ \midrule
+		Variable 1 & $1150$ & 900 & 235 \\ 
+		Variable 2 & $430$ & 300 & 57 \\ 
+		Variable 3 & $367$ & 210 & 113 \\ \bottomrule
+		\end{tabular}
+	\end{table}
 \end{frame}
 
 \begin{frame}{Figures}
-\begin{figure}
-\centering
-\caption{Heading of the figure}
-\includegraphics[width=0.9\paperheight]{graph}
-\end{figure}
+	\begin{figure}
+		\centering
+		\caption{Heading of the figure}
+		\includegraphics[width=0.9\paperheight]{graph}
+	\end{figure}
 \end{frame}
 
 \section{New commands}
 
-\begin{frame}{New commands}
+\begin{frame}{New commands - In preambule}
 	\begin{itemize}
-	\item \texttt{$\backslash$leftfoot$\{$whatever$\}$} displays ``whatever'' in the bottom-left corner
-	\item \texttt{$\backslash$conference$\{$the place$\}$} displays the place hosting the talk in the title page
-	\item \texttt{$\backslash$paper$\{$Author$\}\{$Year$\}$} displays \paper{Author}{Year}
-	\item \texttt{$\backslash$paperalt$\{$Author$\}\{$Year$\}$} displays \paperalt{Author}{Year}
-	\item \texttt{$\backslash$note$\{$some text$\}$} displays \note{some text}
-	\item \texttt{$\backslash$under$\{$some other text$\}$} displays \under{some other text}
-	\item \texttt{$\backslash$vs}: equivalent to \texttt{$\backslash$vspace$\{$0.1cm$\}$}
-	\item \texttt{$\backslash$hs}: equivalent to \texttt{$\backslash$hspace$\{$0.1cm$\}$}
+		\item \texttt{$\backslash$foot$\{$whatever$\}$} displays ``whatever'' in the bottom-left corner
+		\item \texttt{$\backslash$conference$\{$the place$\}$} displays the place hosting the talk in the title page
+		\item \texttt{$\backslash$disclaimer$\{$something$\}$} displays a footnote int he title page with a disclaimer
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{New commands - In main text}
+	\begin{itemize}
+		\item \texttt{$\backslash$paper$\{$Author$\}\{$Year$\}$} displays \paper{Author}{Year}
+		\item \texttt{$\backslash$paperalt$\{$Author$\}\{$Year$\}$} displays \paperalt{Author}{Year}
+		\item \texttt{$\backslash$alert$\{$Lorem ipsum$\}$} displays \alert{Lorem ipsum}
+		\item \texttt{$\backslash$note$\{$Lorem ipsum$\}$} displays \note{Lorem ipsum}
+		\item \texttt{$\backslash$under$\{$Lorem ipsum$\}$} displays \under{Lorem ipsum}
+		\item \texttt{$\backslash$vs}: equivalent to \texttt{$\backslash$vspace$\{$0.1cm$\}$}
+		\item \texttt{$\backslash$hs}: equivalent to \texttt{$\backslash$hspace$\{$0.1cm$\}$}
+		\item \texttt{$\backslash$boxed$\{$Lorem ipsum$\}$} displays\\ \boxed{Lorem ipsum}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{New commands - In math mode}
+	\begin{itemize}
+		\item \texttt{$\backslash$mathpause}: similar to \texttt{$\backslash$pause} but specifically design for display mode equations (the standard command typically adds a vertical space).
+		\item \texttt{$\backslash$so}: displays $\so$
+		\item \texttt{$\backslash$eqboxed$\{$x = 0$\}$} displays $x=0$ in a box.
+		\begin{itemize}
+			\item Example: \texttt{\$\$ x = exp(1) $\backslash$so $\backslash$eqboxed$\{$x = 0$\}$ \$\$ } displays
+			$$x = \exp(1) \so \eqboxed{x=0}$$
+		\end{itemize}
+		\item \texttt{$\backslash$llave$\{$x = 0$\}$$\{$Lorem ipsum$\}$} displays $$\llave{x=0}{Lorem ipsum}$$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]{}
+	\begin{center}{\Large
+		\alert{Comments and suggestions are very welcome}\vs\vs\vs\vs\vs\vs\par \href{mailto:bpetit@cunef.edu}{bpetit [at] cunef.edu}
+		}
+	\end{center}
 \end{frame}
 
 \end{document}

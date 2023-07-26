@@ -12,12 +12,17 @@
 \DeclareOption{termes}{\def\fonttermes{1}}
 \DeclareOption{adventor}{\def\fontadventor{1}}
 
-% Page layout
-\DeclareOption{hdrule}{\def\hdrule{1}}	    	% Add a line below frame title
-\DeclareOption{numbering}{\def\numbering{1}}	% Include numbering of pages
-\DeclareOption{numbertotal}{\def\numbering{1}\def\numbertotal{1}}	% Include numbering of pages
-\DeclareOption{toc}{\def\toc{1}}			    	% Include ToC at the beginning of each section
-\DeclareOption{wide}{\def\aspect{1}}    	    	% Include ToC at the beginning of each section
+% Include numbering of pages
+\DeclareOption{numbering}{\def\numbering{1}}	
+
+% Include numbering of pages
+\DeclareOption{numbertotal}{\def\numbering{1}\def\numbertotal{1}}	
+
+% Include ToC at the beginning of each section
+\DeclareOption{toc}{\def\toc{1}}
+
+% 16:9 aspect ratio
+\DeclareOption{wide}{\def\aspect{1}}    	    	
 
 % Colors:
 \DeclareOption{red}{\def\colorred{1}}
@@ -32,9 +37,9 @@
 \ProcessOptions\relax
 
 \ifdefined\aspect
-    \LoadClass[11pt,aspectratio=169]{beamer}
+    \LoadClass[aspectratio=169]{beamer}
 \else
-    \LoadClass[10pt]{beamer}
+    \LoadClass[]{beamer}
 \relax\fi
 
 \RequirePackage[english]{babel}
@@ -49,18 +54,12 @@
 \RequirePackage{stackengine}                			%
 \RequirePackage{ulem}                       			% Nice underline environment
 \RequirePackage{multirow}					% Merge multiple rows/columns in tables
+\RequirePackage{tcolorbox}
 
 \mode<presentation>{\usetheme{Dresden}\usefonttheme{default}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FONTS:
-
-% Iowa font
-\ifdefined\fontiowa
-    \familydefault{\rmdefault}
-	\renewcommand*\rmdefault{iwona}
-	\renewcommand{\familydefault}{iwona}
-\else\relax\fi
 
 % San-serif (default) font
 \ifdefined\fontsf
@@ -105,7 +104,7 @@
 % COLORS
 
 \definecolor{main}{rgb}{0,0.5,0}
-
+\definecolor{darkyellow}{rgb}{0.71, 0.65, 0.26}
 \ifdefined\colorgreen\definecolor{main}{rgb}{0,0.5,0}\else\relax\fi
 \ifdefined\colorred\definecolor{main}{rgb}{0.8,0,0}\else\relax\fi
 \ifdefined\colorblue\definecolor{main}{rgb}{0,0.2,0.8}\else\relax\fi
@@ -128,118 +127,116 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{mini frames}{}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% HEADER AND FOOTER
+% make "pause" to put things transparent
+\setbeamercovered{transparent=10}
 
-%\def\dotsep{\hspace{0.3cm}}
-%\setbeamertemplate{footline}{
-%   \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}	\end{beamercolorbox}
-%   \begin{beamercolorbox}[colsep=1.5pt]{middle separation line foot} \end{beamercolorbox}
-%   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot} \end{beamercolorbox} 
-%   \begin{beamercolorbox}{section in head/foot}
-%   	\vskip2pt%
-%   	\ifx\insertshortauthor\empty\else\dotsep\insertshortauthor\relax\fi%
-%   	\ifx\insertshorttitle\empty\else\dotsep\insertshorttitle\relax\fi%
-%	\ifx\insertshortdate\empty\else\dotsep\insertshortdate\relax\fi%
-%	\hfill%
-%	\ifdefined\numbering\dotsep%
-%		\ifdefined\numbertotal\insertframenumber/\inserttotalframenumber%
-%		\else\insertframenumber\fi
-%	\fi%
-%	\hspace{0.2cm} \ %
-%	\vskip4pt%
-%   \end{beamercolorbox}  }
-   
-\newcommand{\leftfoot}[1]{\def\lfoot{#1}}
+% Define headline
+\setbeamertemplate{headline}{
+   \begin{beamercolorbox}[colsep=0pt]{upper separation line head}\end{beamercolorbox}%
+   \begin{beamercolorbox}[colsep=0pt]{middle separation line head}\end{beamercolorbox}%
+   \begin{beamercolorbox}[colsep=0pt]{lower separation line head}\end{beamercolorbox}%
+   \begin{beamercolorbox}{section in head}\end{beamercolorbox}%
+}
+%
+% Define footline
+\newcommand{\foot}[1]{\def\lfoot{#1}}
 \setbeamertemplate{footline}{
-   \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}	\end{beamercolorbox}
-   \begin{beamercolorbox}[colsep=1.5pt]{middle separation line foot} \end{beamercolorbox}
-   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot} \end{beamercolorbox} 
-   \begin{beamercolorbox}{section in head/foot}
-   	\vskip2pt\hspace{0.3cm}%
-   	\ifdefined\lfoot\lfoot\else\relax\fi\hfill%
-	\ifdefined\numbering\ifdefined\numbertotal\insertframenumber/\inserttotalframenumber\else\insertframenumber\fi\fi%
+   \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}\end{beamercolorbox}%
+   \begin{beamercolorbox}[colsep=1.5pt]{middle separation line foot}\end{beamercolorbox}%
+   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}\end{beamercolorbox}%
+   \begin{beamercolorbox}{section in foot}%
+   	\vskip2pt \ \hspace{0.1cm}
+   	\ifdefined\lfoot
+            {\color{black!60}\lfoot}
+        \else\relax\fi\hfill%
+        \ifx\insertsection\empty\else%
+                {\color{black!60}\insertsection \ $-$ \ }%
+            \relax\fi%
+        \ifdefined\numbering%
+            \ifdefined\numbertotal%
+                {\color{black!60}\insertframenumber/\inserttotalframenumber}%
+            \else%
+                {\color{black!60}\insertframenumber}%
+            \fi%
+        \fi%
 	\hspace{0.2cm} \ \vskip4pt%
-   \end{beamercolorbox}  }
-	
-% slide header
-\setbeamertemplate{headline}{%
+   \end{beamercolorbox}%
 }
 
-% Set colors for headers/footers
-\setbeamercolor{section in head/foot}{fg=main,bg=white}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SLIDE TITLE
-
-\setbeamerfont{frametitle}{size=\large,series=\bf}
-\setbeamerfont{framesubtitle}{size=\normalsize,shape=\it}
-\setbeamercolor{frametitle}{fg=main,bg=white}
-\setbeamercolor{framesubtitle}{fg=black!70,bg=white}
-
-\setbeamertemplate{frametitle}{    
-    \begin{beamercolorbox}[sep=10pt,left,wd=\paperwidth]{frametitle}%
-        \usebeamerfont{frametitle}%
-        \insertframetitle%
+% Define title of slides
+%
+\setbeamertemplate{frametitle}{
+    \vspace{-0.03cm}
+    \begin{beamercolorbox}[sep=0.3cm,wd=1\paperwidth]{myframetitle}%
+        {\Large{\color{main}\insertframetitle}}%
         \ifx\insertframesubtitle\empty\else%
-    		\vs\\{\color{black!70}\usebeamerfont{framesubtitle}\insertframesubtitle}
-    	\relax\fi
-	 \ifdefined\hdrule%
-    		\vspace{-0.2cm}\\%
-		\rule{1.02\textwidth}{0.8pt}%
-  	 \else\relax\fi
-    \end{beamercolorbox}
+            \\{\large\color{black!70}\textit{\insertframesubtitle}}
+        \relax\fi
+    \end{beamercolorbox}%
+    \vspace{-0.03cm}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TITLE PAGE
 
-\setbeamerfont{title}{size=\large,series=\bf}
+\setbeamerfont{title}{size=\Large}
 \setbeamerfont{subtitle}{size=\large,series=\mdseries,shape=\it}
 \setbeamerfont{author}{size=\normalsize}
 \setbeamerfont{institute}{size=\small}
 \setbeamerfont{date}{size=\normalsize}
 
-\setbeamercolor{title}{fg=main,bg=black!5}
-\setbeamercolor{author}{fg=black,bg=white!5}
-\setbeamercolor{date}{fg=black,bg=white!5}
+\setbeamercolor{title}{fg=main,bg=white}
+\setbeamercolor{author}{fg=black,bg=white}
+\setbeamercolor{date}{fg=black,bg=white}
+\setbeamercolor{disc}{fg=black,bg=white}
 
 \newcommand{\conference}[1]{\def\talk{#1}}
+\newcommand{\disclaimer}[1]{\def\discla{#1}}
 
 \setbeamertemplate{title page}{%
+    %
+    { \ } \vfill
     \addtocounter{framenumber}{-1}%
     %
     %
-    \begin{beamercolorbox}[sep=10pt,center]{title}%
+    \begin{beamercolorbox}[wd=0.95\paperwidth,sep=10pt,center]{title}%
         \usebeamerfont{title}%
-        \inserttitle%
+        {\Large\color{main}\inserttitle}%
         \ifx\insertsubtitle\empty\else%
-        		\vspace{0.2cm}\par%
+            \vspace{0.2cm}\par%
 		\usebeamerfont{subtitle}%
 		\insertsubtitle%
         \relax\fi%
     \end{beamercolorbox}%
     %
     %
-    \begin{beamercolorbox}[sep=20pt,center]{author}%
+    \begin{beamercolorbox}[wd=0.95\paperwidth,sep=10pt,center]{author}%
         \usebeamerfont{author}%
         \insertauthor%
         \ifx\insertinstitute\empty\else\par%
-		\vspace{0.5cm}%
+		\vspace{0.4cm}%
 		\usebeamerfont{institute}%
 		\insertinstitute\\%
 	\relax\fi%
     \end{beamercolorbox}%
     %
     %
-    \begin{beamercolorbox}[sep=0pt,center]{date}%
+    \begin{beamercolorbox}[wd=0.95\paperwidth,sep=10pt,center]{date}%
 	\usebeamerfont{date}%
 	\ifdefined\talk%
-		\talk\par\vspace{0.3cm}%
+		{\color{darkyellow}\talk}\par\vspace{0.3cm}%
 	\else\relax\fi%
 	\insertdate%
     \end{beamercolorbox}%
     %
+    \vfill
+    \ifdefined\discla\par
+    \begin{beamercolorbox}[wd=0.95\paperwidth,sep=5pt,left]{disc}%
+	\setlength{\parskip}{-5mm}%
+        \noindent\scriptsize\discla
+    \end{beamercolorbox}%
+    \else\relax\fi%
+    \vspace{-0.5cm}
     %
     }
     
@@ -256,24 +253,28 @@
         \end{minipage}\end{center}\vfill
         \end{frame}}%
 \else
-% if "toc" not selected, show new slides with sections headings:
-\renewcommand\section[1]{%
-    \begin{frame}[plain]\centering%
-    \addtocounter{framenumber}{-1}%
-    {\color{main}\Large{#1}\vs\\%
-    \rule{0.7\textwidth}{0.8pt}}%
-    \end{frame}}%
+    % if "toc" not selected, show new slides with sections headings:
+    \renewcommand\section[1]{%
+        \begin{frame}[plain]\centering%
+        \addtocounter{framenumber}{-1}%
+        {\color{main}\Large{#1}\vs\\%
+        \rule{0.7\textwidth}{0.8pt}}%
+        \end{frame}}%
 \relax\fi
 
 % Format of sections in TOC:
-\setbeamertemplate{section in toc}{\usebeamercolor[fg]{enumerate item}{%
+\setbeamertemplate{section in toc}{%
+    \usebeamercolor[fg]{enumerate item}{%
     {\color{main}\inserttocsectionnumber. \inserttocsection}%
 }}%
 
 % Format of subsections in TOC:
-\setbeamertemplate{subsection in toc}{\usebeamercolor[fg]{enumerate item}{%
-    {\color{main}\inserttocsectionnumber.\inserttocsubsectionnumber. \inserttocsubsection}%
-}}%
+\setbeamertemplate{subsection in toc}{
+    \usebeamercolor[fg]{enumerate item}{%
+    {\color{black!50}\hspace{0.5cm}%
+    \footnotesize\inserttocsectionnumber.\inserttocsubsectionnumber \ \ \inserttocsubsection\vspace{-0.1cm}\par}%
+    }%
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LENGTHS AND NEW COMMANDS
@@ -289,30 +290,34 @@
 \newcommand{\hs}{\hspace{0.1cm}}
 \newcommand{\vs}{\vspace{0.1cm}}
 
-\newcommand{\so}{\ \ \ \Rightarrow \ \ \ }
+\newcommand{\so}{\ \ \ \ {\color{main}\longrightarrow} \ \ \ \ }
 \newcommand{\under}[1]{\underline{\smash{#1}}}
+\newcommand{\llave}[2]{{\color{main}\underbrace{\addstackgap[4pt]{\color{black}$#1$}}_{{\footnotesize\text{{\color{main}#2}}}}}}
+
+\newcommand{\mathpause}{\vspace*{-\baselineskip}\pause}
 
 \newcommand{\paper}[2]{{{\color{main}#1} ({\color{main}#2})}}
 \newcommand{\paperalt}[2]{{\color{main}#1, #2}}
 
-\renewcommand{\note}[1]{\textit{\color{black!45}#1}}
+\newcommand\eqboxed[1]{{\setlength\fboxrule{1pt}\setlength\fboxsep{8pt}\fcolorbox{main}{black!5}{\enspace$#1$\enspace}}}
+\renewcommand\boxed[1]{{\setlength\fboxrule{1pt}\setlength\fboxsep{8pt}\fcolorbox{main}{black!5}{\enspace#1\enspace}}}
 
-\newcommand{\llave}[2]{%
-\underbrace{ \addstackgap[4pt] {$#1$} }_{ {\footnotesize\text{\color{main}#2}} } }
+\renewcommand{\note}[1]{\textit{\color{black!50}#1}}
+
+\renewcommand{\footnoterule}{}
+
+\renewcommand{\alert}[1]{{\color{main}#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % LIST ENVIROMENTS
 
-\setitemize{itemsep=1.2ex, topsep=1.2ex, leftmargin=15pt}
-\setenumerate{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt}
+\setitemize[1]{itemsep=1.2ex, topsep=1.2ex,leftmargin=15pt, label={\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths{\color{main}$\bullet$}}}}
+\setitemize[2]{itemsep=1.2ex, topsep=1.2ex, leftmargin=12pt, label={\footnotesize\raise1.5pt\hbox{\donotcoloroutermaths{\color{main}$\circ$}}}}
+\setitemize[3]{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt, labelsep=8pt, label={\footnotesize\raise1.1pt\hbox{\donotcoloroutermaths{\color{main}$-$}}}}
 
-\setitemize[1]{label={\footnotesize\raise1.5pt\hbox{\donotcoloroutermaths{\color{main}$\bullet$}}}}
-\setitemize[2]{label={\footnotesize\raise1.5pt\hbox{\donotcoloroutermaths{\color{main}$\circ$}}}}
-\setitemize[3]{label={\footnotesize\raise1.1pt\hbox{\donotcoloroutermaths{\color{main}$-$}}}}
-
-\setenumerate[1]{label={{\color{main}\arabic*.}}}
-\setenumerate[2]{label={{\color{main}\alph*.}}}
-\setenumerate[3]{label={\color{main}\roman*.}}
+\setenumerate[1]{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt, label={\color{main}\arabic*.}}
+\setenumerate[2]{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt, label={\color{main}(\alph*)}}
+\setenumerate[3]{itemsep=1.2ex, topsep=1.2ex, leftmargin=20pt, label={\color{main}\roman*.}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FIGURES AND FIGURES
@@ -320,7 +325,7 @@
 % Captions
 \captionsetup{labelfont={color=main}}
 \captionsetup{justification=centering}
-\captionsetup{belowskip=5pt}
+\captionsetup{belowskip=2pt}
 \captionsetup{aboveskip=5pt}
 
 % Baseline array height
@@ -329,22 +334,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BLOCKS
 
-\setbeamerfont{block body}{size=\normalsize}
-\setbeamercolor{block body}{fg=black,bg=black!5}
+\newtcolorbox{bpblock}[2][]{arc=0pt , colback=black!5 , colbacktitle=black!10 , colframe=black!0 , title=#2 , left=2mm , right=2mm , coltitle=main , toptitle=1.5mm , bottomtitle=0.9mm , fonttitle=\normalsize}
 
-\setbeamerfont{block title}{size=\normalsize}
-\setbeamercolor{block title}{fg=main,bg=black!10}
-
-\setbeamertemplate{block begin}{%
-	\begin{beamercolorbox}[wd=1\linewidth,colsep=6pt]{block title}%
-    \usebeamerfont*{block title}\insertblocktitle%
-	\end{beamercolorbox}%
-	\usebeamerfont{block body}%
-	\begin{beamercolorbox}[wd=1\linewidth,sep=8pt]{block body}%
-}
-\setbeamertemplate{block end}{%
-	\end{beamercolorbox}\vskip10pt%
-}
+\renewenvironment{block}[2]{\begin{bpblock}{#1}#2}{\end{bpblock}}%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BUTTONS
