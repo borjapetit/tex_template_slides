@@ -55,6 +55,7 @@
 \RequirePackage{ulem}                       % Nice underline environment
 \RequirePackage{multirow}					% Merge multiple rows/columns in tables
 \RequirePackage{tcolorbox}
+\RequirePackage{colortbl}
 
 \mode<presentation>{\usetheme{Dresden}\usefonttheme{default}}
 
@@ -103,7 +104,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COLORS
 
-\definecolor{main}{rgb}{0,0.5,0}
+\definecolor{main}{rgb}{0,0.2,0.8}
 \definecolor{darkyellow}{rgb}{0.71, 0.65, 0.26}
 \ifdefined\colorgreen\definecolor{main}{rgb}{0,0.5,0}\else\relax\fi
 \ifdefined\colorred\definecolor{main}{rgb}{0.8,0,0}\else\relax\fi
