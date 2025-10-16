@@ -4,12 +4,12 @@
 This repository contains a simple Beamer template for academic presentations.
 
 ```LaTex
-\documentclass[numbering,toc,blue,wide]{bpslides}
+\documentclass[...options...]{bpslides}
 ```
 
 You can find an example here: [.tex file](example/example.tex) and [.pdf file](example/example.pdf).
 
-**Note**: The user can still use any option compatible with the ```article``` class such ```handout```, etc.
+**Note**: The user can still use any option compatible with the ```beamer``` class such ```handout```, etc.
 
 _This code is distributed under the [MIT License](LICENSE)_
 
@@ -41,16 +41,18 @@ The available fonts are:
 
 **Colors:**
 
-The user can select the color of the main elements of the presentation (frame titles, bullet points, etc.) using the corresponding option in the ```\documentclass``` command. If no option is selected, the default color is green.
+The user can select the color of the main elements of the presentation (frame titles, bullet points, etc.) using the corresponding option in the ```\documentclass``` command. If no option is selected, the default color is blue.
 
 The available colors are:
-- ```green``` (_default_)
+- ```blue``` (_default_)
+- ```green```
 - ```red```
-- ```blue```
 - ```orange```
 - ```black```
 - ```magenta```
 - ```purple```
+
+The selected color is stored as ```main```, so that it can be accessed using ```{\color{main}...}``` in the document.
 
 ## New commands for the preambule
 
@@ -60,8 +62,7 @@ The available colors are:
 
 **```\foot{...}```**: displaiys some user-defined text in the bottom-left corner of slides (except for the title page, slides with table of contents, etc.).
 
-
-A "complete" preambule would be:
+A complete preambule would be:
 
 ```Latex
 \title{Title of your presentation}
