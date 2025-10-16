@@ -9,7 +9,7 @@ This repository contains a simple Beamer template for academic presentations.
 
 You can find an example here: [.tex file](example/example.tex) and [.pdf file](example/example.pdf).
 
-**Note**: The user can still use any option compatible with the ```article``` class such ```handout```, etc.
+**Note**: The user can still use any option compatible with the ```beamer``` class such ```handout```, font size, etc.
 
 _This code is distributed under the [MIT License](LICENSE)_
 
