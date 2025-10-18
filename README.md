@@ -4,7 +4,11 @@
 This repository contains a simple Beamer template for academic presentations.
 
 ```LaTex
+<<<<<<< HEAD
 \documentclass[...options...]{bpslides}
+=======
+\documentclass[ ... options ... ]{bpslides}
+>>>>>>> fd4174c (ok)
 ```
 
 You can find an example here: [.tex file](example/example.tex) and [.pdf file](example/example.pdf).
@@ -15,7 +19,11 @@ _This code is distributed under the [MIT License](LICENSE)_
 
 ## Options
 
+<<<<<<< HEAD
 **Main options**
+=======
+Slides layout:
+>>>>>>> fd4174c (ok)
 
 ```numbering```: include slide numbers in the (right) footer
 
@@ -39,11 +47,15 @@ The available fonts are:
 - Termes (option: ```termes```)
 - Adventor (option: ```adventor```)
 
+<<<<<<< HEAD
 **Colors:**
 
 The user can select the color of the main elements of the presentation (frame titles, bullet points, etc.) using the corresponding option in the ```\documentclass``` command. If no option is selected, the default color is blue.
 
 The available colors are:
+=======
+Colors: you can select the main color of the template using one of the following options:
+>>>>>>> fd4174c (ok)
 - ```blue``` (_default_)
 - ```green```
 - ```red```
@@ -52,7 +64,11 @@ The available colors are:
 - ```magenta```
 - ```purple```
 
+<<<<<<< HEAD
 The selected color is stored as ```main```, so that it can be accessed using ```{\color{main}...}``` in the document.
+=======
+_Note: the color you select is stored as ```main```, so that it can be used in the text using ```{\color{main} ... }```._
+>>>>>>> fd4174c (ok)
 
 ## New commands for the preambule
 
@@ -99,16 +115,25 @@ A complete preambule would be:
 - ```\under{Lorem ipsum}``` underlines "Lorem ipsum".
 
 - ```\boxed{Lorem ipsum}``` displays "Lorem ipsum" in a box.
+<<<<<<< HEAD
 
 **Spacing commands**
 
 - ```\vs``` equivalent to ```\vspace{0.1cm$}```.
 
 - ```\hs``` equivalent to ```\hspace{0.1cm$}```.
+=======
+- ```\vs``` equivalent to ```\vspace{0.1cm}```.
+- ```\hs``` equivalent to ```\hspace{0.1cm}```.
+>>>>>>> fd4174c (ok)
 
 ## New commands for math mode
 
 
+<<<<<<< HEAD
+=======
+- ```\so``` displays a long right-arrow ($\longrightarrow$).
+>>>>>>> fd4174c (ok)
 - ```\mathpause``` equivalent to ```\pause```, but redesigned to avoid the extra vertical spacing.
 
 - ```\so``` displays a long right-arrow ($\longrightarrow$).
